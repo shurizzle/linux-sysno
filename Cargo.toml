@@ -24,4 +24,21 @@ riscv32 = []
 riscv64 = []
 m68k = []
 
+all = [
+  "arm",
+  "mips",
+  "mips64",
+  "powerpc",
+  "powerpc64",
+  "s390x",
+  "sparc",
+  "sparc64",
+  "x86",
+  "x86_64",
+  "aarch64",
+  "riscv32",
+  "riscv64",
+  "m68k",
+]
+
 [dependencies]

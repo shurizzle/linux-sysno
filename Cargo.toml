@@ -1,0 +1,27 @@
+[workspace]
+exclude = ["sysno-gen"]
+
+[package]
+name = "linux-sysno"
+version = "0.0.1"
+edition = "2015"
+
+[features]
+default = []
+
+arm = []
+mips = []
+mips64 = []
+powerpc = []
+powerpc64 = []
+s390x = []
+sparc = []
+sparc64 = []
+x86 = []
+x86_64 = []
+aarch64 = []
+riscv32 = []
+riscv64 = []
+m68k = []
+
+[dependencies]

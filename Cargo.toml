@@ -5,6 +5,7 @@ exclude = ["sysno-gen"]
 name = "linux-sysno"
 version = "0.0.1"
 edition = "2015"
+metadata = { msrv = "1.16.0" }
 
 [features]
 default = []

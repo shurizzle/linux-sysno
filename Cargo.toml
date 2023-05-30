@@ -24,6 +24,7 @@ aarch64 = []
 riscv32 = []
 riscv64 = []
 m68k = []
+loongarch64 = []
 
 all = [
   "arm",

@@ -52,6 +52,13 @@ pub mod riscv64;
 #[path = "generic.rs"]
 pub mod m68k;
 
+#[cfg(any(
+    feature = "loongarch64",
+    all(target_os = "linux", target_arch = "loongarch64")
+))]
+#[path = "generic.rs"]
+pub mod loongarch64;
+
 #[cfg(all(target_os = "linux", target_arch = "arm"))]
 pub use arm::*;
 
@@ -94,28 +101,11 @@ pub use riscv64::*;
 #[cfg(all(target_os = "linux", target_arch = "m68k"))]
 pub use m68k::*;
 
+#[cfg(all(target_os = "linux", target_arch = "loongarch64"))]
+pub use loongarch64::*;
+
 #[cfg(test)]
 mod tests {
-
-    #[cfg(all(
-        target_os = "linux",
-        any(
-            target_arch = "arm",
-            target_arch = "mips",
-            target_arch = "mips64",
-            target_arch = "powerpc",
-            target_arch = "powerpc64",
-            target_arch = "s390x",
-            target_arch = "sparc",
-            target_arch = "sparc64",
-            target_arch = "x86",
-            target_arch = "x86_64",
-            target_arch = "aarch64",
-            target_arch = "riscv32",
-            target_arch = "riscv64",
-            target_arch = "m68k"
-        )
-    ))]
     #[test]
     fn is_present() {
         let _ = super::Sysno::write;

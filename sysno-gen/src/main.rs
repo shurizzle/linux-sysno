@@ -16,6 +16,8 @@ use kernel_org::fetch_file;
 
 use crate::kernel_org::latest_version;
 
+const __ARM_NR_BASE: usize = 0x0f0000;
+
 fn main() -> Result<()> {
     color_eyre::install()?;
 
@@ -34,21 +36,29 @@ fn main() -> Result<()> {
     let formatter = Formatter::new()?;
     let formatter = &formatter;
 
+    let generic = header::from_reader(fetch_file(&version, "include/uapi/asm-generic/unistd.h")?)
+        .filter(|l| {
+            if let Ok(l) = l {
+                l.0.as_ref() != "sync_file_range"
+            } else {
+                true
+            }
+        })
+        .collect::<Result<Vec<_>, _>>()?;
+    let mut aarch64 = generic.clone();
+
+    let generic = build_enum(generic.into_iter().map(Ok))?;
+    write_file(generic, formatter, base, "generic")?;
+
     write_file(
-        build_enum(
-            header::from_reader(fetch_file(&version, "include/uapi/asm-generic/unistd.h")?).filter(
-                |l| {
-                    if let Ok(l) = l {
-                        l.0.as_ref() != "sync_file_range"
-                    } else {
-                        true
-                    }
-                },
-            ),
-        )?,
+        {
+            aarch64.push(("cacheflush".to_string().into_boxed_str(), __ARM_NR_BASE + 2));
+            aarch64.push(("set_tls".to_string().into_boxed_str(), __ARM_NR_BASE + 5));
+            build_enum(aarch64.into_iter().map(Ok))?
+        },
         formatter,
         base,
-        "generic",
+        "aarch64",
     )?;
 
     write_file(
@@ -74,7 +84,20 @@ fn main() -> Result<()> {
     )?;
 
     write_file(
-        table_enum(&version, "arch/arm/tools/syscall.tbl", [ABI::COMMON])?,
+        build_enum(
+            table_iter(&version, "arch/arm/tools/syscall.tbl", [ABI::COMMON])?.chain(
+                [
+                    ("breakpoint", __ARM_NR_BASE + 1),
+                    ("cacheflush", __ARM_NR_BASE + 2),
+                    ("usr26", __ARM_NR_BASE + 3),
+                    ("usr32", __ARM_NR_BASE + 4),
+                    ("set_tls", __ARM_NR_BASE + 5),
+                    ("get_tls", __ARM_NR_BASE + 6),
+                ]
+                .into_iter()
+                .map(|(name, no)| Ok((name.to_string().into_boxed_str(), no))),
+            ),
+        )?,
         formatter,
         base,
         "arm",
@@ -190,15 +213,27 @@ fn table_enum<'a, T1, T2, T3>(version: T1, path: T2, abis: T3) -> Result<SysnoEn
 where
     T1: fmt::Display,
     T2: fmt::Display,
-    T3: AsRef<[ABI<'a>]>,
+    T3: AsRef<[ABI<'a>]> + 'a,
 {
-    let abis = abis.as_ref();
+    build_enum(table_iter(version, path, abis)?)
+}
 
-    build_enum(
-        table::from_reader(fetch_file(version, path)?).filter_map(|l| match l {
+fn table_iter<'a, T1, T2, T3>(
+    version: T1,
+    path: T2,
+    abis: T3,
+) -> Result<impl Iterator<Item = std::io::Result<(Box<str>, usize)>> + 'a>
+where
+    T1: fmt::Display,
+    T2: fmt::Display,
+    T3: AsRef<[ABI<'a>]> + 'a,
+{
+    Ok(
+        table::from_reader(fetch_file(version, path)?).filter_map(move |l| match l {
             Ok((no, abi, name)) => {
                 let abi = <Rc<Box<str>> as AsRef<Box<str>>>::as_ref(&abi).as_ref();
-                abis.iter()
+                abis.as_ref()
+                    .iter()
                     .find(|a| a.0 == abi)
                     .map(|abi| Ok((name, abi.adjust(no))))
             }

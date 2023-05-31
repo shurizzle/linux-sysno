@@ -408,4 +408,10 @@ pub enum Sysno {
     process_mrelease = 448,
     futex_waitv = 449,
     set_mempolicy_home_node = 450,
+    breakpoint = 983041,
+    cacheflush = 983042,
+    usr26 = 983043,
+    usr32 = 983044,
+    set_tls = 983045,
+    get_tls = 983046,
 }

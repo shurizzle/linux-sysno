@@ -37,7 +37,6 @@ pub mod x86;
 pub mod x86_64;
 
 #[cfg(any(feature = "aarch64", all(target_os = "linux", target_arch = "aarch64")))]
-#[path = "generic.rs"]
 pub mod aarch64;
 
 #[cfg(any(feature = "riscv32", all(target_os = "linux", target_arch = "riscv32")))]

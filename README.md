@@ -1,7 +1,7 @@
 # linux-sysno
 
-[![Crates.io](https://img.shields.io/crates/l/linux-sysno?style=for-the-badge)](https://crates.io/crates/linux-sysno)
-[![docs.rs](https://img.shields.io/docsrs/linux-sysno?style=for-the-badge)](https://docs.rs/syscalls)
+[![Crates.io](https://img.shields.io/crates/v/linux-sysno?style=for-the-badge)](https://crates.io/crates/linux-sysno)
+[![docs.rs](https://img.shields.io/docsrs/linux-sysno?style=for-the-badge)](https://docs.rs/linux-sysno)
 ![Crates.io](https://img.shields.io/crates/l/linux-sysno?style=for-the-badge)
 
 This is just a list of syscall numbers for (almost) all the cpu architectures supported by the Linux kernel.

@@ -50,6 +50,16 @@ pub mod x86;
 ))]
 pub mod x86_64;
 
+#[cfg(any(
+    feature = "x32",
+    all(
+        target_os = "linux",
+        target_arch = "x86_64",
+        target_pointer_width = "32"
+    )
+))]
+pub mod x32;
+
 #[cfg(any(feature = "aarch64", all(target_os = "linux", target_arch = "aarch64")))]
 pub mod aarch64;
 
@@ -109,6 +119,13 @@ pub use x86::Sysno;
     target_pointer_width = "64"
 ))]
 pub use x86_64::Sysno;
+
+#[cfg(all(
+    target_os = "linux",
+    target_arch = "x86_64",
+    target_pointer_width = "32"
+))]
+pub use x32::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "aarch64"))]
 pub use aarch64::Sysno;

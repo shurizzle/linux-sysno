@@ -4,7 +4,7 @@ mod header;
 mod kernel_org;
 mod table;
 
-use std::{fmt, fs::File, io::Write, path::Path, rc::Rc};
+use std::{cell::RefCell, fmt, fs::File, io::Write, path::Path, rc::Rc};
 
 use color_eyre::{
     eyre::{bail, Context},
@@ -17,6 +17,7 @@ use kernel_org::fetch_file;
 use crate::kernel_org::latest_version;
 
 const __ARM_NR_BASE: usize = 0x0f0000;
+const __X32_SYSCALL_BIT: usize = 0x40000000;
 
 fn main() -> Result<()> {
     color_eyre::install()?;
@@ -72,16 +73,49 @@ fn main() -> Result<()> {
         "x86",
     )?;
 
-    write_file(
-        table_enum(
-            &version,
-            "arch/x86/entry/syscalls/syscall_64.tbl",
-            [ABI::COMMON, ABI::B64],
-        )?,
-        formatter,
-        base,
-        "x86_64",
-    )?;
+    {
+        let x32 = Rc::new(RefCell::new(Vec::new()));
+        write_file(
+            build_enum({
+                let x32 = x32.clone();
+                table::from_reader(fetch_file(
+                    &version,
+                    "arch/x86/entry/syscalls/syscall_64.tbl",
+                )?)
+                .filter_map(move |l| match l {
+                    Ok((no, abi, name)) => {
+                        let abi = <Rc<Box<str>> as AsRef<Box<str>>>::as_ref(&abi).as_ref();
+
+                        if abi == ABI::COMMON.0 {
+                            let no = ABI::COMMON.adjust(no);
+                            Rc::as_ref(&x32)
+                                .borrow_mut()
+                                .push((name.clone(), no | __X32_SYSCALL_BIT));
+                            Some(Ok((name, no)))
+                        } else if abi == ABI::B64.0 {
+                            Some(Ok((name, ABI::B64.adjust(no))))
+                        } else if abi == ABI::X32.0 {
+                            Rc::as_ref(&x32)
+                                .borrow_mut()
+                                .push((name, no | __X32_SYSCALL_BIT));
+                            None
+                        } else {
+                            None
+                        }
+                    }
+                    Err(err) => Some(Err(err)),
+                })
+            })?,
+            formatter,
+            base,
+            "x86_64",
+        )?;
+
+        let x32 = Rc::try_unwrap(x32)
+            .expect("x32 should not be borrowed")
+            .into_inner();
+        write_file(build_enum(x32.into_iter().map(Ok))?, formatter, base, "x32")?;
+    }
 
     write_file(
         build_enum(
@@ -193,19 +227,21 @@ fn main() -> Result<()> {
 }
 
 #[derive(Debug, Copy, Clone)]
-pub struct ABI<'a>(&'a str, usize);
+pub struct ABI<'a>(&'a str, fn(usize) -> usize);
 
 impl<'a> ABI<'a> {
-    pub const COMMON: Self = Self("common", 0);
-    pub const I386: Self = Self("i386", 0);
-    pub const NOSPU: Self = Self("nospu", 0);
-    pub const B32: Self = Self("32", 0);
-    pub const B64: Self = Self("64", 0);
-    pub const O32: Self = Self("o32", 4000);
-    pub const N64: Self = Self("n64", 5000);
+    pub const COMMON: Self = Self("common", |n| n);
+    pub const I386: Self = Self("i386", |n| n);
+    pub const NOSPU: Self = Self("nospu", |n| n);
+    pub const B32: Self = Self("32", |n| n);
+    pub const B64: Self = Self("64", |n| n);
+    pub const X32: Self = Self("x32", |n| n);
+    pub const O32: Self = Self("o32", |n| n + 4000);
+    pub const N64: Self = Self("n64", |n| n + 5000);
 
+    #[inline]
     pub fn adjust(&self, n: usize) -> usize {
-        self.1 + n
+        (self.1)(n)
     }
 }
 

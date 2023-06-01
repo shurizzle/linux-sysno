@@ -19,6 +19,16 @@ pub mod mips;
 ))]
 pub mod mips64;
 
+#[cfg(any(
+    feature = "mipsn32",
+    all(
+        target_os = "linux",
+        target_arch = "mips64",
+        target_pointer_width = "32"
+    )
+))]
+pub mod mips64;
+
 #[cfg(any(feature = "powerpc", all(target_os = "linux", target_arch = "powerpc")))]
 pub mod powerpc;
 
@@ -94,6 +104,13 @@ pub use mips::Sysno;
     target_pointer_width = "64"
 ))]
 pub use mips64::Sysno;
+
+#[cfg(all(
+    target_os = "linux",
+    target_arch = "mips64",
+    target_pointer_width = "32"
+))]
+pub use mipsn32::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "powerpc"))]
 pub use powerpc::Sysno;

@@ -20,6 +20,7 @@ default = []
 
 arm = []
 mips = []
+mipsn32 = []
 mips64 = []
 powerpc = []
 powerpc64 = []
@@ -38,6 +39,7 @@ loongarch64 = []
 all = [
   "arm",
   "mips",
+  "mipsn32",
   "mips64",
   "powerpc",
   "powerpc64",

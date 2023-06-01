@@ -15,6 +15,7 @@ This library is `no_std`, I mean, it's just an enum.
 
 - `arm`: Enable arm architecture in its own module.
 - `mips`: Enable mips architecture in its own module.
+- `mipsn32`: Enable mipsn32 architecture in its own module.
 - `mips64`: Enable mips64 architecture in its own module.
 - `powerpc`: Enable powerpc architecture in its own module.
 - `powerpc64`: Enable powerpc64 architecture in its own module.

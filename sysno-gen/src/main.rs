@@ -206,6 +206,17 @@ fn main() -> Result<()> {
     write_file(
         table_enum(
             &version,
+            "arch/mips/kernel/syscalls/syscall_n32.tbl",
+            [ABI::N32],
+        )?,
+        formatter,
+        base,
+        "mipsn32",
+    )?;
+
+    write_file(
+        table_enum(
+            &version,
             "arch/s390/kernel/syscalls/syscall.tbl",
             [ABI::COMMON, ABI::B64],
         )?,
@@ -238,6 +249,7 @@ impl<'a> ABI<'a> {
     pub const X32: Self = Self("x32", |n| n);
     pub const O32: Self = Self("o32", |n| n + 4000);
     pub const N64: Self = Self("n64", |n| n + 5000);
+    pub const N32: Self = Self("n32", |n| n + 6000);
 
     #[inline]
     pub fn adjust(&self, n: usize) -> usize {

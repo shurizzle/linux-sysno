@@ -4,7 +4,15 @@ exclude = ["sysno-gen"]
 [package]
 name = "linux-sysno"
 version = "0.0.1"
+authors = ["shurizzle <shura1991@gmail.com>"]
 edition = "2015"
+license = "MIT"
+description = "A list of system call numbers"
+keywords = ["syscall", "no_std", "linux"]
+readme = "README.md"
+repository = "https://github.com/shurizzle/linux-sysno"
+homepage = "https://github.com/shurizzle/linux-sysno"
+documentation = "https://docs.rs/linux-sysno"
 metadata = { msrv = "1.16.0" }
 
 [features]

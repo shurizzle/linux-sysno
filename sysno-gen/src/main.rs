@@ -290,10 +290,14 @@ fn write_file<T: fmt::Display, P: AsRef<Path>, N: fmt::Display>(
     let mut path = path.as_ref().to_path_buf();
     std::fs::create_dir_all(&path)
         .wrap_err_with(|| format!("Failed to create directory {}", path.display()))?;
-    path.push(name);
+    path.push(&name);
 
-    File::create(&path)
-        .wrap_err_with(|| format!("Failed to write generated file {}", path.display()))?
-        .write_all(content.as_bytes())
+    let mut f = File::create(&path)
+        .wrap_err_with(|| format!("Failed to write generated file {}", path.display()))?;
+    writeln!(f, "//! Syscalls for arch `{}`.\n", unsafe {
+        name.get_unchecked(..(name.len() - 3))
+    })
+    .wrap_err_with(|| format!("Failed to write generated file {}", path.display()))?;
+    f.write_all(content.as_bytes())
         .wrap_err_with(|| format!("Failed to write generated file {}", path.display()))
 }

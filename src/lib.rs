@@ -9,7 +9,14 @@ pub mod arm;
 #[cfg(any(feature = "mips", all(target_os = "linux", target_arch = "mips")))]
 pub mod mips;
 
-#[cfg(any(feature = "mips64", all(target_os = "linux", target_arch = "mips64")))]
+#[cfg(any(
+    feature = "mips64",
+    all(
+        target_os = "linux",
+        target_arch = "mips64",
+        target_pointer_width = "64"
+    )
+))]
 pub mod mips64;
 
 #[cfg(any(feature = "powerpc", all(target_os = "linux", target_arch = "powerpc")))]
@@ -33,7 +40,14 @@ pub mod sparc64;
 #[cfg(any(feature = "x86", all(target_os = "linux", target_arch = "x86")))]
 pub mod x86;
 
-#[cfg(any(feature = "x86_64", all(target_os = "linux", target_arch = "x86_64")))]
+#[cfg(any(
+    feature = "x86_64",
+    all(
+        target_os = "linux",
+        target_arch = "x86_64",
+        target_pointer_width = "64"
+    )
+))]
 pub mod x86_64;
 
 #[cfg(any(feature = "aarch64", all(target_os = "linux", target_arch = "aarch64")))]
@@ -59,49 +73,57 @@ pub mod m68k;
 pub mod loongarch64;
 
 #[cfg(all(target_os = "linux", target_arch = "arm"))]
-pub use arm::*;
+pub use arm::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "mips"))]
-pub use mips::*;
+pub use mips::Sysno;
 
-#[cfg(all(target_os = "linux", target_arch = "mips64"))]
-pub use mips64::*;
+#[cfg(all(
+    target_os = "linux",
+    target_arch = "mips64",
+    target_pointer_width = "64"
+))]
+pub use mips64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "powerpc"))]
-pub use powerpc::*;
+pub use powerpc::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "powerpc64"))]
-pub use powerpc64::*;
+pub use powerpc64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "s390x"))]
-pub use s390x::*;
+pub use s390x::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "sparc"))]
-pub use sparc::*;
+pub use sparc::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "sparc64"))]
-pub use sparc64::*;
+pub use sparc64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "x86"))]
-pub use x86::*;
+pub use x86::Sysno;
 
-#[cfg(all(target_os = "linux", target_arch = "x86_64"))]
-pub use x86_64::*;
+#[cfg(all(
+    target_os = "linux",
+    target_arch = "x86_64",
+    target_pointer_width = "64"
+))]
+pub use x86_64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "aarch64"))]
-pub use aarch64::*;
+pub use aarch64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "riscv32"))]
-pub use riscv32::*;
+pub use riscv32::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "riscv64"))]
-pub use riscv64::*;
+pub use riscv64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "m68k"))]
-pub use m68k::*;
+pub use m68k::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "loongarch64"))]
-pub use loongarch64::*;
+pub use loongarch64::Sysno;
 
 #[cfg(test)]
 mod tests {

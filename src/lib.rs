@@ -27,7 +27,7 @@ pub mod mips64;
         target_pointer_width = "32"
     )
 ))]
-pub mod mips64;
+pub mod mipsn32;
 
 #[cfg(any(feature = "powerpc", all(target_os = "linux", target_arch = "powerpc")))]
 pub mod powerpc;

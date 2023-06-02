@@ -34,4 +34,4 @@ This library is `no_std`, I mean, it's just an enum.
 
 ### MSRV
 
-1.16.0
+1.40.0

@@ -13,7 +13,28 @@ readme = "README.md"
 repository = "https://github.com/shurizzle/linux-sysno"
 homepage = "https://github.com/shurizzle/linux-sysno"
 documentation = "https://docs.rs/linux-sysno"
-metadata = { msrv = "1.16.0" }
+
+[package.metadata]
+msrv = "1.16.0"
+
+[package.metdata.docs.rs]
+all-features = true
+default-target = "x86_64-unknown-linux-gnu"
+targets = [
+  "arm-unknown-linux-gnueabi",
+  "mips64-unknown-linux-gnuabi64",
+  "powerpc-unknown-linux-gnu",
+  "powerpc64-unknown-linux-gnu",
+  "s390x-unknown-linux-gnu",
+  "sparc-unknown-linux-gnu",
+  "sparc64-unknown-linux-gnu",
+  "i686-unknown-linux-gnu",
+  "x86_64-unknown-linux-gnux32",
+  "aarch64-unknown-linux-gnu",
+  "riscv32gc-unknown-linux-gnu",
+  "riscv64gc-unknown-linux-gnu",
+]
+cargo-args = ["-Z", "build-std"]
 
 [features]
 default = []

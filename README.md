@@ -5,7 +5,7 @@
 ![Crates.io](https://img.shields.io/crates/l/linux-sysno?style=for-the-badge)
 
 This is just a list of syscall numbers for (almost) all the cpu architectures supported by the Linux kernel.
-The current architecture's sysnos (if target is linux) are exported in module's root even without the corresponding feature flag.
+The current architecture's sysnos (if `target_os` is `linux` or `android`) are exported in module's root even without the corresponding feature flag.
 
 ### `#![no_std]`
 

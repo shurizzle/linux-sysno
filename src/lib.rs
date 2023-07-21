@@ -3,7 +3,10 @@
 #[cfg(feature = "generic")]
 pub mod generic;
 
-#[cfg(any(feature = "arm", all(target_os = "linux", target_arch = "arm")))]
+#[cfg(any(
+    feature = "arm",
+    all(any(target_os = "linux", target_os = "android"), target_arch = "arm")
+))]
 pub mod arm;
 
 #[cfg(any(feature = "mips", all(target_os = "linux", target_arch = "mips")))]
@@ -47,13 +50,16 @@ pub mod sparc;
 #[cfg(any(feature = "sparc64", all(target_os = "linux", target_arch = "sparc64")))]
 pub mod sparc64;
 
-#[cfg(any(feature = "x86", all(target_os = "linux", target_arch = "x86")))]
+#[cfg(any(
+    feature = "x86",
+    all(any(target_os = "linux", target_os = "android"), target_arch = "x86")
+))]
 pub mod x86;
 
 #[cfg(any(
     feature = "x86_64",
     all(
-        target_os = "linux",
+        any(target_os = "linux", target_os = "android"),
         target_arch = "x86_64",
         target_pointer_width = "64"
     )
@@ -70,7 +76,13 @@ pub mod x86_64;
 ))]
 pub mod x32;
 
-#[cfg(any(feature = "aarch64", all(target_os = "linux", target_arch = "aarch64")))]
+#[cfg(any(
+    feature = "aarch64",
+    all(
+        any(target_os = "linux", target_os = "android"),
+        target_arch = "aarch64"
+    )
+))]
 pub mod aarch64;
 
 #[cfg(any(feature = "riscv32", all(target_os = "linux", target_arch = "riscv32")))]
@@ -92,7 +104,7 @@ pub mod m68k;
 #[path = "generic.rs"]
 pub mod loongarch64;
 
-#[cfg(all(target_os = "linux", target_arch = "arm"))]
+#[cfg(all(any(target_os = "linux", target_os = "android"), target_arch = "arm"))]
 pub use arm::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "mips"))]
@@ -127,11 +139,11 @@ pub use sparc::Sysno;
 #[cfg(all(target_os = "linux", target_arch = "sparc64"))]
 pub use sparc64::Sysno;
 
-#[cfg(all(target_os = "linux", target_arch = "x86"))]
+#[cfg(all(any(target_os = "linux", target_os = "android"), target_arch = "x86"))]
 pub use x86::Sysno;
 
 #[cfg(all(
-    target_os = "linux",
+    any(target_os = "linux", target_os = "android"),
     target_arch = "x86_64",
     target_pointer_width = "64"
 ))]
@@ -144,7 +156,10 @@ pub use x86_64::Sysno;
 ))]
 pub use x32::Sysno;
 
-#[cfg(all(target_os = "linux", target_arch = "aarch64"))]
+#[cfg(all(
+    any(target_os = "linux", target_os = "android"),
+    target_arch = "aarch64"
+))]
 pub use aarch64::Sysno;
 
 #[cfg(all(target_os = "linux", target_arch = "riscv32"))]

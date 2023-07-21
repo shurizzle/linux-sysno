@@ -3,12 +3,12 @@ exclude = ["sysno-gen"]
 
 [package]
 name = "linux-sysno"
-version = "0.2.2"
+version = "0.2.3"
 authors = ["shurizzle <shura1991@gmail.com>"]
 edition = "2018"
 license = "MIT"
 description = "A list of system call numbers"
-keywords = ["syscall", "no_std", "linux"]
+keywords = ["syscall", "no_std", "linux", "android"]
 readme = "README.md"
 repository = "https://github.com/shurizzle/linux-sysno"
 homepage = "https://github.com/shurizzle/linux-sysno"

@@ -84,11 +84,11 @@ test_powerpc64() {
 }
 
 test_mips() {
-  test_stable mips-unknown-linux-gnu mips
+  test_nightly mips-unknown-linux-gnu mips
 }
 
 test_mips64() {
-  test_stable mips64-unknown-linux-gnuabi64 mips64
+  test_nightly mips64-unknown-linux-gnuabi64 mips64
 }
 
 test_s390x() {

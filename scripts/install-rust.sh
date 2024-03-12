@@ -14,15 +14,18 @@ contains() {
 }
 
 for arch in "$@"; do
-  if [ "$arch" = loongarch64 ]; then
-    if ! contains nightly "${toolchains[@]}"; then
-      toolchains+=(nightly)
-    fi
-  else
-    if ! contains stable "${toolchains[@]}"; then
-      toolchains+=(stable)
-    fi
-  fi
+  case "$arch" in
+    loongarch64|mips|mips64)
+      if ! contains nightly "${toolchains[@]}"; then
+        toolchains+=(nightly)
+      fi
+      ;;
+    *)
+      if ! contains stable "${toolchains[@]}"; then
+        toolchains+=(stable)
+      fi
+      ;;
+  esac
 done
 
 if [ "${#toolchains[@]}" -eq 0 ]; then

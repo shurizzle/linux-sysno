@@ -49,11 +49,13 @@ install_powerpc64() {
 }
 
 install_mips() {
-  rustup target add mips-unknown-linux-gnu --toolchain stable
+  # rustup target add mips-unknown-linux-gnu --toolchain nightly
+  true
 }
 
 install_mips64() {
-  rustup target add mips64-unknown-linux-gnuabi64 --toolchain stable
+  # rustup target add mips64-unknown-linux-gnuabi64 --toolchain nightly
+  true
 }
 
 install_s390x() {

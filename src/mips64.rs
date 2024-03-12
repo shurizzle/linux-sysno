@@ -715,4 +715,26 @@ pub enum Sysno {
     process_mrelease = 5448,
     /// See doc at [futex_waitv(2)](https://man7.org/linux/man-pages/man2/futex_waitv.2.html).
     futex_waitv = 5449,
+    /// See doc at [cachestat(2)](https://man7.org/linux/man-pages/man2/cachestat.2.html).
+    cachestat = 5451,
+    /// See doc at [fchmodat2(2)](https://man7.org/linux/man-pages/man2/fchmodat2.2.html).
+    fchmodat2 = 5452,
+    /// See doc at [map_shadow_stack(2)](https://man7.org/linux/man-pages/man2/map_shadow_stack.2.html).
+    map_shadow_stack = 5453,
+    /// See doc at [futex_wake(2)](https://man7.org/linux/man-pages/man2/futex_wake.2.html).
+    futex_wake = 5454,
+    /// See doc at [futex_wait(2)](https://man7.org/linux/man-pages/man2/futex_wait.2.html).
+    futex_wait = 5455,
+    /// See doc at [futex_requeue(2)](https://man7.org/linux/man-pages/man2/futex_requeue.2.html).
+    futex_requeue = 5456,
+    /// See doc at [statmount(2)](https://man7.org/linux/man-pages/man2/statmount.2.html).
+    statmount = 5457,
+    /// See doc at [listmount(2)](https://man7.org/linux/man-pages/man2/listmount.2.html).
+    listmount = 5458,
+    /// See doc at [lsm_get_self_attr(2)](https://man7.org/linux/man-pages/man2/lsm_get_self_attr.2.html).
+    lsm_get_self_attr = 5459,
+    /// See doc at [lsm_set_self_attr(2)](https://man7.org/linux/man-pages/man2/lsm_set_self_attr.2.html).
+    lsm_set_self_attr = 5460,
+    /// See doc at [lsm_list_modules(2)](https://man7.org/linux/man-pages/man2/lsm_list_modules.2.html).
+    lsm_list_modules = 5461,
 }

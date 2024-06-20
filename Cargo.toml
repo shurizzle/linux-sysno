@@ -3,7 +3,7 @@ exclude = ["sysno-gen"]
 
 [package]
 name = "linux-sysno"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["shurizzle <shura1991@gmail.com>"]
 edition = "2018"
 license = "MIT"

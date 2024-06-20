@@ -643,6 +643,8 @@ pub enum Sysno {
     cachestat = 1073742275,
     /// See doc at [fchmodat2(2)](https://man7.org/linux/man-pages/man2/fchmodat2.2.html).
     fchmodat2 = 1073742276,
+    /// See doc at [map_shadow_stack(2)](https://man7.org/linux/man-pages/man2/map_shadow_stack.2.html).
+    map_shadow_stack = 1073742277,
     /// See doc at [futex_wake(2)](https://man7.org/linux/man-pages/man2/futex_wake.2.html).
     futex_wake = 1073742278,
     /// See doc at [futex_wait(2)](https://man7.org/linux/man-pages/man2/futex_wait.2.html).
@@ -659,6 +661,8 @@ pub enum Sysno {
     lsm_set_self_attr = 1073742284,
     /// See doc at [lsm_list_modules(2)](https://man7.org/linux/man-pages/man2/lsm_list_modules.2.html).
     lsm_list_modules = 1073742285,
+    /// See doc at [mseal(2)](https://man7.org/linux/man-pages/man2/mseal.2.html).
+    mseal = 1073742286,
     /// See doc at [rt_sigaction(2)](https://man7.org/linux/man-pages/man2/rt_sigaction.2.html).
     rt_sigaction = 1073742336,
     /// See doc at [rt_sigreturn(2)](https://man7.org/linux/man-pages/man2/rt_sigreturn.2.html).

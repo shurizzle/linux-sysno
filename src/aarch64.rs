@@ -683,6 +683,8 @@ pub enum Sysno {
     lsm_set_self_attr = 460,
     /// See doc at [lsm_list_modules(2)](https://man7.org/linux/man-pages/man2/lsm_list_modules.2.html).
     lsm_list_modules = 461,
+    /// See doc at [mseal(2)](https://man7.org/linux/man-pages/man2/mseal.2.html).
+    mseal = 462,
     /// See doc at [cacheflush(2)](https://man7.org/linux/man-pages/man2/cacheflush.2.html).
     cacheflush = 983042,
     /// See doc at [set_tls(2)](https://man7.org/linux/man-pages/man2/set_tls.2.html).

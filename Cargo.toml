@@ -56,6 +56,7 @@ riscv32 = []
 riscv64 = []
 m68k = []
 loongarch64 = []
+generic = []
 
 all = [
   "arm",
@@ -74,6 +75,7 @@ all = [
   "riscv64",
   "m68k",
   "loongarch64",
+  "generic",
 ]
 
 [dependencies]

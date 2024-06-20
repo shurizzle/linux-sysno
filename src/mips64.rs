@@ -737,4 +737,6 @@ pub enum Sysno {
     lsm_set_self_attr = 5460,
     /// See doc at [lsm_list_modules(2)](https://man7.org/linux/man-pages/man2/lsm_list_modules.2.html).
     lsm_list_modules = 5461,
+    /// See doc at [mseal(2)](https://man7.org/linux/man-pages/man2/mseal.2.html).
+    mseal = 5462,
 }

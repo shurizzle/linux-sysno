@@ -585,6 +585,8 @@ pub enum Sysno {
     io_pgetevents = 1073742157,
     /// See doc at [rseq(2)](https://man7.org/linux/man-pages/man2/rseq.2.html).
     rseq = 1073742158,
+    /// See doc at [uretprobe(2)](https://man7.org/linux/man-pages/man2/uretprobe.2.html).
+    uretprobe = 1073742159,
     /// See doc at [pidfd_send_signal(2)](https://man7.org/linux/man-pages/man2/pidfd_send_signal.2.html).
     pidfd_send_signal = 1073742248,
     /// See doc at [io_uring_setup(2)](https://man7.org/linux/man-pages/man2/io_uring_setup.2.html).

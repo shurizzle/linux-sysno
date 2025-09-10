@@ -739,4 +739,18 @@ pub enum Sysno {
     lsm_list_modules = 5461,
     /// See doc at [mseal(2)](https://man7.org/linux/man-pages/man2/mseal.2.html).
     mseal = 5462,
+    /// See doc at [setxattrat(2)](https://man7.org/linux/man-pages/man2/setxattrat.2.html).
+    setxattrat = 5463,
+    /// See doc at [getxattrat(2)](https://man7.org/linux/man-pages/man2/getxattrat.2.html).
+    getxattrat = 5464,
+    /// See doc at [listxattrat(2)](https://man7.org/linux/man-pages/man2/listxattrat.2.html).
+    listxattrat = 5465,
+    /// See doc at [removexattrat(2)](https://man7.org/linux/man-pages/man2/removexattrat.2.html).
+    removexattrat = 5466,
+    /// See doc at [open_tree_attr(2)](https://man7.org/linux/man-pages/man2/open_tree_attr.2.html).
+    open_tree_attr = 5467,
+    /// See doc at [file_getattr(2)](https://man7.org/linux/man-pages/man2/file_getattr.2.html).
+    file_getattr = 5468,
+    /// See doc at [file_setattr(2)](https://man7.org/linux/man-pages/man2/file_setattr.2.html).
+    file_setattr = 5469,
 }

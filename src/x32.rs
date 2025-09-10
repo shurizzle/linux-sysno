@@ -665,6 +665,20 @@ pub enum Sysno {
     lsm_list_modules = 1073742285,
     /// See doc at [mseal(2)](https://man7.org/linux/man-pages/man2/mseal.2.html).
     mseal = 1073742286,
+    /// See doc at [setxattrat(2)](https://man7.org/linux/man-pages/man2/setxattrat.2.html).
+    setxattrat = 1073742287,
+    /// See doc at [getxattrat(2)](https://man7.org/linux/man-pages/man2/getxattrat.2.html).
+    getxattrat = 1073742288,
+    /// See doc at [listxattrat(2)](https://man7.org/linux/man-pages/man2/listxattrat.2.html).
+    listxattrat = 1073742289,
+    /// See doc at [removexattrat(2)](https://man7.org/linux/man-pages/man2/removexattrat.2.html).
+    removexattrat = 1073742290,
+    /// See doc at [open_tree_attr(2)](https://man7.org/linux/man-pages/man2/open_tree_attr.2.html).
+    open_tree_attr = 1073742291,
+    /// See doc at [file_getattr(2)](https://man7.org/linux/man-pages/man2/file_getattr.2.html).
+    file_getattr = 1073742292,
+    /// See doc at [file_setattr(2)](https://man7.org/linux/man-pages/man2/file_setattr.2.html).
+    file_setattr = 1073742293,
     /// See doc at [rt_sigaction(2)](https://man7.org/linux/man-pages/man2/rt_sigaction.2.html).
     rt_sigaction = 1073742336,
     /// See doc at [rt_sigreturn(2)](https://man7.org/linux/man-pages/man2/rt_sigreturn.2.html).

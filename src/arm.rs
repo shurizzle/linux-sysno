@@ -853,6 +853,8 @@ pub enum Sysno {
     file_getattr = 468,
     /// See doc at [file_setattr(2)](https://man7.org/linux/man-pages/man2/file_setattr.2.html).
     file_setattr = 469,
+    /// See doc at [listns(2)](https://man7.org/linux/man-pages/man2/listns.2.html).
+    listns = 470,
     /// See doc at [breakpoint(2)](https://man7.org/linux/man-pages/man2/breakpoint.2.html).
     breakpoint = 983041,
     /// See doc at [cacheflush(2)](https://man7.org/linux/man-pages/man2/cacheflush.2.html).

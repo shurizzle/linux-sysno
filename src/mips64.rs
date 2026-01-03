@@ -753,4 +753,6 @@ pub enum Sysno {
     file_getattr = 5468,
     /// See doc at [file_setattr(2)](https://man7.org/linux/man-pages/man2/file_setattr.2.html).
     file_setattr = 5469,
+    /// See doc at [listns(2)](https://man7.org/linux/man-pages/man2/listns.2.html).
+    listns = 5470,
 }

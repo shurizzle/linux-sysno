@@ -699,6 +699,8 @@ pub enum Sysno {
     file_getattr = 468,
     /// See doc at [file_setattr(2)](https://man7.org/linux/man-pages/man2/file_setattr.2.html).
     file_setattr = 469,
+    /// See doc at [listns(2)](https://man7.org/linux/man-pages/man2/listns.2.html).
+    listns = 470,
     /// See doc at [cacheflush(2)](https://man7.org/linux/man-pages/man2/cacheflush.2.html).
     cacheflush = 983042,
     /// See doc at [set_tls(2)](https://man7.org/linux/man-pages/man2/set_tls.2.html).

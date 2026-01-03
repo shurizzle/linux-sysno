@@ -587,6 +587,8 @@ pub enum Sysno {
     rseq = 1073742158,
     /// See doc at [uretprobe(2)](https://man7.org/linux/man-pages/man2/uretprobe.2.html).
     uretprobe = 1073742159,
+    /// See doc at [uprobe(2)](https://man7.org/linux/man-pages/man2/uprobe.2.html).
+    uprobe = 1073742160,
     /// See doc at [pidfd_send_signal(2)](https://man7.org/linux/man-pages/man2/pidfd_send_signal.2.html).
     pidfd_send_signal = 1073742248,
     /// See doc at [io_uring_setup(2)](https://man7.org/linux/man-pages/man2/io_uring_setup.2.html).
@@ -679,6 +681,8 @@ pub enum Sysno {
     file_getattr = 1073742292,
     /// See doc at [file_setattr(2)](https://man7.org/linux/man-pages/man2/file_setattr.2.html).
     file_setattr = 1073742293,
+    /// See doc at [listns(2)](https://man7.org/linux/man-pages/man2/listns.2.html).
+    listns = 1073742294,
     /// See doc at [rt_sigaction(2)](https://man7.org/linux/man-pages/man2/rt_sigaction.2.html).
     rt_sigaction = 1073742336,
     /// See doc at [rt_sigreturn(2)](https://man7.org/linux/man-pages/man2/rt_sigreturn.2.html).
